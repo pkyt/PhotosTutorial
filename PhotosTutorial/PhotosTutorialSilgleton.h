@@ -12,8 +12,11 @@
 @interface PhotosTutorialSilgleton : NSObject
 
 + (id)getPhotos;
++ (void)setTrigger:(NSInteger)trigger;
 - (NSUInteger)getNumberOfPhotos;
 - (void) fillListOfPhotos;
 - (PhotoKeeper*)getPhotoKeeperAt:(NSUInteger)position;
+- (NSInteger)positionWithName:(NSString*)name;
+- (PhotoKeeper*)getTriggerPhoto;
 
 @end

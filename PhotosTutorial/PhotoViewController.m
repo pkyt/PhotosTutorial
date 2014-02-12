@@ -7,6 +7,8 @@
 //
 
 #import "PhotoViewController.h"
+#import "PhotoKeeper.h"
+#include "PhotosTutorialSilgleton.h"
 
 @interface PhotoViewController ()
 
@@ -26,6 +28,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+#define menuSpace 60
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile:@"/Users/pkyt/Desktop/PhotosTutorial/PhotosTutorial/Photos/Lviv.jpg"];
+    UIImageView* placeForImage = [[UIImageView alloc] initWithImage:image];
+    placeForImage.frame = CGRectMake(self.view.bounds.origin.x,
+                             (self.view.bounds.origin.y + menuSpace),
+                             self.view.bounds.size.width,
+                             (self.view.bounds.size.height - menuSpace));
+    [self.view addSubview:placeForImage];
 	// Do any additional setup after loading the view.
 }
 
