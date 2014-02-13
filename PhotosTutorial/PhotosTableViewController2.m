@@ -13,30 +13,33 @@
 
 @interface PhotosTableViewController2 ()
 
-- (void)doNothing:(UIButton*)sender;
+@property (nonatomic, strong) NSMutableArray *items;
 
 @end
 
 @implementation PhotosTableViewController2
 
-@synthesize SBDTable = _SBDTable;
-
-- (void)doNothing:(UIButton*)sender{
-    NSLog(@"hello do Nothing: %@", sender.currentTitle);
-    
-    PhotoViewController * pictureView = [[PhotoViewController alloc] init];
-    [self.navigationController pushViewController:pictureView animated:YES];
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _items = [NSMutableArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
+    }
+    return self;
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
     // UITableViewCell* aCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
     //                                   reuseIdentifier:nil];
-    PhotosTutorialSilgleton* setOfPhotos = [PhotosTutorialSilgleton getPhotos];
+    /*
     NSLog(@"%lu", [setOfPhotos getNumberOfPhotos]);
     for (int i = 0; i < [setOfPhotos getNumberOfPhotos]; i++) {
-        NSLog(@"%lu", i);
+        NSLog(@"%d", i);
         PhotoKeeper* photo = [setOfPhotos getPhotoKeeperAt:i];
         UITableViewCell* aCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                         reuseIdentifier:nil];
@@ -52,7 +55,7 @@
         [switching addTarget:self action:@selector(doNothing:) forControlEvents:UIControlEventTouchUpInside];
         [aCell addSubview:switching];
         [_SBDTable addSubview:aCell];
-    }
+    }*/
     
     /*
     aCell.textLabel.text = @"hello cell";
@@ -69,6 +72,44 @@
      */
     NSLog(@"bay viewDidLoad");
     // add cells the way I want it
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[PhotosTutorialSilgleton getPhotos] getNumberOfPhotos];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"sth");
+    static NSString * const cellIdentifier = @"MyCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    PhotosTutorialSilgleton* photos = [PhotosTutorialSilgleton getPhotos];
+    PhotoKeeper* photoData = [photos getPhotoKeeperAt:indexPath.row];
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    NSString *date = [formatter stringFromDate:[photoData getDate]];
+    cell.textLabel.text = [photoData getName];
+    cell.detailTextLabel.text = date;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [PhotosTutorialSilgleton setTrigger:indexPath.row];
+    PhotoViewController * pictureView = [[PhotoViewController alloc] init];
+    [self.navigationController pushViewController:pictureView animated:YES];
+    
 }
 
 @end

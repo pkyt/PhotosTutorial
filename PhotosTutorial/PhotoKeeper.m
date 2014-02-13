@@ -43,24 +43,20 @@
 - (id)initWithPathToFile:(NSString *)pathToPhoto{
     _path = pathToPhoto;
     _count = 0;
+    [self figureOutDate];
+    [self figureOutName];
     return self;
 }
 
 - (NSString *)getPath{
-    return _path;
+    return self.path;
 }
 
 - (NSDate*) getDate{
-    if (!_date) {
-        [self figureOutDate];
-    }
-    return _date;
+    return self.date;
 }
 - (NSString*) getName{
-    if (!_name) {
-        [self figureOutName];
-    }
-    return _name;
+    return self.name;
 }
 
 - (void)fileViewed{

@@ -30,7 +30,8 @@
     [super viewDidLoad];
 #define menuSpace 60
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile:@"/Users/pkyt/Desktop/PhotosTutorial/PhotosTutorial/Photos/Lviv.jpg"];
+    PhotoKeeper* photo = [[PhotosTutorialSilgleton getPhotos] getTriggerPhoto];
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile:[photo getPath]];
     UIImageView* placeForImage = [[UIImageView alloc] initWithImage:image];
     placeForImage.frame = CGRectMake(self.view.bounds.origin.x,
                              (self.view.bounds.origin.y + menuSpace),

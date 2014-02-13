@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotosTableViewController2 : UITableViewController
-@property (strong, nonatomic) IBOutlet UITableView *SBDTable;
 
 @end

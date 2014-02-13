@@ -26,7 +26,11 @@ static NSInteger trg;
 
 - (void)fillListOfPhotos{
     NSLog(@"hello fillListOfPhotos");
-    NSString *documents = [@"/Users/pkyt/Desktop/PhotosTutorial/PhotosTutorial/Photos" stringByExpandingTildeInPath];
+    
+    [[NSBundle mainBundle] bundlePath];
+    NSLog(@"%@", [[NSBundle mainBundle] bundlePath]);
+    [[NSBundle mainBundle] pathForResource:@"Lviv" ofType:@"jpg"];
+    NSString *documents = [[[NSBundle mainBundle] bundlePath] stringByExpandingTildeInPath];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSDirectoryEnumerator *direnum = [fileManager enumeratorAtPath:documents];
     NSString *tString;
