@@ -16,7 +16,8 @@
 @implementation PhotosTutorialSilgleton
 
 static NSMutableArray* listOfPhotos;
-static NSMutableArray* NDlistofPhotos;
+static NSMutableArray* NDlistOfPhotos;
+static NSMutableArray* MRVlistOfPhotos;
 static PhotosTutorialSilgleton* this;
 static NSInteger trg;
 static BOOL MostRecentlyViewed;
@@ -27,22 +28,44 @@ static BOOL MostRecentlyViewed;
     trg = trigger;
 }
 
-- (void)sortByND{
-    NDlistofPhotos = [NSMutableArray new];
+- (void)sortByMRV{
+    if (!MRVlistOfPhotos) {
+        MRVlistOfPhotos = [NSMutableArray new];
+    }
+    [MRVlistOfPhotos removeAllObjects];
     for (int i = 0; i < [listOfPhotos count]; i++) {
         PhotoKeeper* photo = [listOfPhotos objectAtIndex:i];
         int j;
-        for (j = 0; j < [NDlistofPhotos count]; j++) {
-            if ([[photo getName] compare:[[NDlistofPhotos objectAtIndex:j] getName]] == NSOrderedAscending) {
+        for (j = 0; j < [MRVlistOfPhotos count]; j++) {
+            if ([photo getCountOfViewed] > [[MRVlistOfPhotos objectAtIndex:j] getCountOfViewed]) {
                 break;
             }else{
-                if (([[photo getDate] earlierDate:[[NDlistofPhotos objectAtIndex:j] getDate]]) &&
-                    ([[photo getName] isEqualToString:[[NDlistofPhotos objectAtIndex:j] getName]])) {
+                if (([photo getCountOfViewed] == [[MRVlistOfPhotos objectAtIndex:j] getCountOfViewed]) &&
+                    ([[photo getName] compare:[[MRVlistOfPhotos objectAtIndex:j] getName]] == NSOrderedAscending)) {
                     break;
                 }
             }
         }
-        [NDlistofPhotos insertObject:photo atIndex:j];
+        [MRVlistOfPhotos insertObject:photo atIndex:j];
+    }
+}
+
+- (void)sortByND{
+    NDlistOfPhotos = [NSMutableArray new];
+    for (int i = 0; i < [listOfPhotos count]; i++) {
+        PhotoKeeper* photo = [listOfPhotos objectAtIndex:i];
+        int j;
+        for (j = 0; j < [NDlistOfPhotos count]; j++) {
+            if ([[photo getName] compare:[[NDlistOfPhotos objectAtIndex:j] getName]] == NSOrderedAscending) {
+                break;
+            }else{
+                if (([[photo getDate] earlierDate:[[NDlistOfPhotos objectAtIndex:j] getDate]]) &&
+                    ([[photo getName] isEqualToString:[[NDlistOfPhotos objectAtIndex:j] getName]])) {
+                    break;
+                }
+            }
+        }
+        [NDlistOfPhotos insertObject:photo atIndex:j];
     }
 }
 
@@ -71,7 +94,11 @@ static BOOL MostRecentlyViewed;
 }
 
 - (PhotoKeeper*)getPhotoSortedByNameAt:(NSUInteger)position{
-    return [NDlistofPhotos objectAtIndex:position];
+    return [NDlistOfPhotos objectAtIndex:position];
+}
+
+- (PhotoKeeper*)getPhotoSortedByMRVAt:(NSUInteger)position{
+    return [MRVlistOfPhotos objectAtIndex:position];
 }
 
 - (PhotoKeeper*)getTriggerPhoto{
@@ -82,7 +109,7 @@ static BOOL MostRecentlyViewed;
     if (MostRecentlyViewed) {
         return [listOfPhotos objectAtIndex:trg];
     }else{
-        return [NDlistofPhotos objectAtIndex:trg];
+        return [NDlistOfPhotos objectAtIndex:trg];
     }
 }
 

@@ -1,27 +1,27 @@
 //
-//  PhotosTableViewController2.m
+//  PhotosTableViewController3.m
 //  PhotosTutorial
 //
-//  Created by Pavlo Kytsmey on 2/11/14.
+//  Created by Pavlo Kytsmey on 2/13/14.
 //  Copyright (c) 2014 Pavlo Kytsmey. All rights reserved.
 //
 
-#import "PhotosTableViewController2.h"
+#import "PhotosTableViewController3.h"
 #import "PhotoViewController.h"
 #import "PhotoKeeper.h"
 #include "PhotosTutorialSilgleton.h"
 
-@interface PhotosTableViewController2 ()
+@interface PhotosTableViewController3 ()
 
 @end
 
-@implementation PhotosTableViewController2
-
+@implementation PhotosTableViewController3
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.dataSource = self;
+    [[PhotosTutorialSilgleton getPhotos] sortByMRV];
     NSLog(@"bay viewDidLoad");
 }
 
@@ -40,26 +40,20 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     PhotosTutorialSilgleton* photos = [PhotosTutorialSilgleton getPhotos];
-    PhotoKeeper* photoData = [photos getPhotoSortedByNameAt:indexPath.row];
-    
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
-    NSString *date = [formatter stringFromDate:[photoData getDate]];
+    PhotoKeeper* photoData = [photos getPhotoSortedByMRVAt:indexPath.row];
     cell.textLabel.text = [photoData getName];
-    cell.detailTextLabel.text = date;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", [photoData getCountOfViewed]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[[PhotosTutorialSilgleton getPhotos] getPhotoSortedByNameAt:indexPath.row] fileViewed];
-    [PhotosTutorialSilgleton setTrigger:indexPath.row withSortingMRV:NO];
+    [[[PhotosTutorialSilgleton getPhotos] getPhotoSortedByMRVAt:indexPath.row] fileViewed];
+    [PhotosTutorialSilgleton setTrigger:indexPath.row withSortingMRV:YES];
     PhotoViewController * pictureView = [[PhotoViewController alloc] init];
     [self.navigationController pushViewController:pictureView animated:YES];
 }
+
 
 @end

@@ -17,7 +17,9 @@
 - (void) fillListOfPhotos;
 - (PhotoKeeper*)getPhotoKeeperAt:(NSUInteger)position;
 - (PhotoKeeper*)getPhotoSortedByNameAt:(NSUInteger)position;
+- (PhotoKeeper*)getPhotoSortedByMRVAt:(NSUInteger)position;
 - (NSInteger)positionWithName:(NSString*)name;
 - (PhotoKeeper*)getTriggerPhoto;
+- (void)sortByMRV; // first soring by Count, second by Name
 
 @end
