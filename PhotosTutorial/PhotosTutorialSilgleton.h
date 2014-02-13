@@ -12,10 +12,11 @@
 @interface PhotosTutorialSilgleton : NSObject
 
 + (id)getPhotos;
-+ (void)setTrigger:(NSInteger)trigger;
++ (void)setTrigger:(NSInteger)trigger withSortingMRV:(BOOL)MRV;
 - (NSUInteger)getNumberOfPhotos;
 - (void) fillListOfPhotos;
 - (PhotoKeeper*)getPhotoKeeperAt:(NSUInteger)position;
+- (PhotoKeeper*)getPhotoSortedByNameAt:(NSUInteger)position;
 - (NSInteger)positionWithName:(NSString*)name;
 - (PhotoKeeper*)getTriggerPhoto;
 

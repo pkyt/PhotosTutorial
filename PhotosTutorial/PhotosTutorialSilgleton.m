@@ -10,18 +10,40 @@
 #import "PhotoKeeper.h"
 
 @interface PhotosTutorialSilgleton()
-
+- (void)sortByND; // first soring by Name, second by Date
 @end
 
 @implementation PhotosTutorialSilgleton
 
 static NSMutableArray* listOfPhotos;
+static NSMutableArray* NDlistofPhotos;
 static PhotosTutorialSilgleton* this;
 static NSInteger trg;
+static BOOL MostRecentlyViewed;
 
 
-+ (void)setTrigger:(NSInteger)trigger{
++ (void)setTrigger:(NSInteger)trigger withSortingMRV:(BOOL)MRV{
+    MostRecentlyViewed = MRV;
     trg = trigger;
+}
+
+- (void)sortByND{
+    NDlistofPhotos = [NSMutableArray new];
+    for (int i = 0; i < [listOfPhotos count]; i++) {
+        PhotoKeeper* photo = [listOfPhotos objectAtIndex:i];
+        int j;
+        for (j = 0; j < [NDlistofPhotos count]; j++) {
+            if ([[photo getName] compare:[[NDlistofPhotos objectAtIndex:j] getName]] == NSOrderedAscending) {
+                break;
+            }else{
+                if (([[photo getDate] earlierDate:[[NDlistofPhotos objectAtIndex:j] getDate]]) &&
+                    ([[photo getName] isEqualToString:[[NDlistofPhotos objectAtIndex:j] getName]])) {
+                    break;
+                }
+            }
+        }
+        [NDlistofPhotos insertObject:photo atIndex:j];
+    }
 }
 
 - (void)fillListOfPhotos{
@@ -44,7 +66,12 @@ static NSInteger trg;
             
         }
     }
+    [self sortByND];
     NSLog(@"DONE");
+}
+
+- (PhotoKeeper*)getPhotoSortedByNameAt:(NSUInteger)position{
+    return [NDlistofPhotos objectAtIndex:position];
 }
 
 - (PhotoKeeper*)getTriggerPhoto{
@@ -52,7 +79,11 @@ static NSInteger trg;
         NSLog(@"Trigger isn't supposed to be -1");
         trg = 0;
     }
-    return [listOfPhotos objectAtIndex:trg];
+    if (MostRecentlyViewed) {
+        return [listOfPhotos objectAtIndex:trg];
+    }else{
+        return [NDlistofPhotos objectAtIndex:trg];
+    }
 }
 
 + (id)getPhotos{
