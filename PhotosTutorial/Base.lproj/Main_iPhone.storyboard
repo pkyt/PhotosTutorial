@@ -22,15 +22,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f8f-kA-H2u">
-                                                    <rect key="frame" x="15" y="11" width="36" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f8f-kA-H2u">
+                                                    <rect key="frame" x="15" y="11" width="46" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QWA-SU-aDi">
-                                                    <rect key="frame" x="242" y="11" width="43" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QWA-SU-aDi">
+                                                    <rect key="frame" x="251" y="11" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,7 +79,7 @@
             </objects>
             <point key="canvasLocation" x="691" y="132"/>
         </scene>
-        <!--Photos Table View Controller2 - Sorted by Date-->
+        <!--Photos Table View Controller2 - Sorted by Name-->
         <scene sceneID="7eg-ld-mnV">
             <objects>
                 <tableViewController id="qnJ-rL-0no" customClass="PhotosTableViewController2" sceneMemberID="viewController">
@@ -89,44 +89,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sorted by Date" id="zmA-bd-H22"/>
-                    <connections>
-                        <outlet property="SBDTable" destination="SkN-9s-8p3" id="5Md-9V-iOZ"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Sorted by Name" id="zmA-bd-H22"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyh-x8-JOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1228" y="-260"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="JZ3-I7-Nr7">
-            <objects>
-                <viewController id="KbJ-ku-T0z" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Amc-2r-lsx"/>
-                        <viewControllerLayoutGuide type="bottom" id="HQY-AQ-ajF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MPZ-gr-0hz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahn-ff-FOq">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="sow-Eo-28U"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ae2-8s-Iud" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1766" y="91"/>
-        </scene>
-        <!--Table View Controller - Sorted by MRV-->
+        <!--Photos Table View Controller3 - Sorted by MRV-->
         <scene sceneID="WLF-FZ-kwU">
             <objects>
-                <tableViewController id="7G6-xg-S7I" sceneMemberID="viewController">
+                <tableViewController id="7G6-xg-S7I" customClass="PhotosTableViewController3" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="v7C-7T-T3P">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
