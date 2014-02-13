@@ -27,6 +27,7 @@
 		A7B71B8418A9496500270D2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B71B6318A9496500270D2C /* UIKit.framework */; };
 		A7B71B8C18A9496500270D2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7B71B8A18A9496500270D2C /* InfoPlist.strings */; };
 		A7B71B8E18A9496500270D2C /* PhotosTutorialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B71B8D18A9496500270D2C /* PhotosTutorialTests.m */; };
+		A7D0882C18ACFD8200B0675F /* PhotosTableViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D0882B18ACFD8200B0675F /* PhotosTableViewController3.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		A7B71B8918A9496500270D2C /* PhotosTutorialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotosTutorialTests-Info.plist"; sourceTree = "<group>"; };
 		A7B71B8B18A9496500270D2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7B71B8D18A9496500270D2C /* PhotosTutorialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosTutorialTests.m; sourceTree = "<group>"; };
+		A7D0882A18ACFD8200B0675F /* PhotosTableViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosTableViewController3.h; sourceTree = "<group>"; };
+		A7D0882B18ACFD8200B0675F /* PhotosTableViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosTableViewController3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				A7AD07BA18AA8F33001A0B49 /* PhotosTableViewController2.m */,
 				A7B2935A18ABB7A400AD27BC /* PhotoViewController.h */,
 				A7B2935B18ABB7A400AD27BC /* PhotoViewController.m */,
+				A7D0882A18ACFD8200B0675F /* PhotosTableViewController3.h */,
+				A7D0882B18ACFD8200B0675F /* PhotosTableViewController3.m */,
 			);
 			path = PhotosTutorial;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				A7B71B6C18A9496500270D2C /* main.m in Sources */,
 				A7AD07B518AA7A3E001A0B49 /* PhotoKeeper.m in Sources */,
 				A7B71B7918A9496500270D2C /* PhotosTutorialViewController.m in Sources */,
+				A7D0882C18ACFD8200B0675F /* PhotosTableViewController3.m in Sources */,
 				A7AD07AC18AA44CE001A0B49 /* PhotosTutorialSilgleton.m in Sources */,
 				A7B71B7018A9496500270D2C /* PhotosTutorialAppDelegate.m in Sources */,
 			);
